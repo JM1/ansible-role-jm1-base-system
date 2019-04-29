@@ -1,0 +1,33 @@
+---
+__apt_packages_stage0:
+  - dialog
+  - libreadline-dev
+  - apt-utils
+  - kmod
+  - inetutils-ping
+  - iproute2
+
+__apt_packages_stage1:
+  - sudo
+  - man-db
+  - screen
+  - vim
+  - p7zip-full
+  - curl
+  - locales
+  - locales-all
+  - htop
+  - bash-completion
+  - console-setup
+  - keyboard-configuration
+  - lshw
+  - patch
+  - aptitude
+  - net-tools
+
+__debconf_selections:
+  # Disable unattended-upgrades, which is pulled in by various desktop environments like KDE
+  - unattended-upgrades     unattended-upgrades/enable_auto_updates boolean false
+#  # either install package locales-all or generate locales yourself:
+#  - locales locales/locales_to_be_generated multiselect     de_DE.UTF-8 UTF-8
+#  - locales locales/default_environment_locale      select  de_DE.UTF-8

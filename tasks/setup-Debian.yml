@@ -1,0 +1,25 @@
+---
+- shell: echo '{{ item }}' | debconf-set-selections
+  loop: "{{ __debconf_selections }}"
+
+- apt:
+    update_cache: yes
+
+- apt:
+    name: "{{ __apt_packages_stage0 }}"
+
+- file:
+    path: /etc/apt/sources.list
+    state: absent
+
+- copy:
+    src: "{{ distribution_codename }}/"
+    dest: /
+    mode: preserve
+
+- apt:
+    update_cache: yes
+    upgrade: dist
+
+- apt:
+    name: "{{ __apt_packages_stage1 }}"
