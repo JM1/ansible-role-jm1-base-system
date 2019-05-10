@@ -28,9 +28,9 @@
 # deb http://ftp.uk.debian.org/debian/ testing main contrib non-free
 # deb http://debian.uni-essen.de/debian/ testing main contrib non-free
 #
-deb http://ftp.de.debian.org/debian testing contrib non-free main
-deb http://ftp.de.debian.org/debian testing-updates contrib non-free main
-deb http://ftp.de.debian.org/debian testing-proposed-updates contrib non-free main
+# deb http://ftp.de.debian.org/debian testing contrib non-free main
+# deb http://ftp.de.debian.org/debian testing-updates contrib non-free main
+# deb http://ftp.de.debian.org/debian testing-proposed-updates contrib non-free main
 
 # Testing Sources
 # deb-src http://ftp.de.debian.org/pub/debian testing main contrib non-free
@@ -124,9 +124,9 @@ deb http://ftp.de.debian.org/debian testing-proposed-updates contrib non-free ma
 # deb-src http://ftp.de.debian.org/pub/debian stretch-proposed-updates main contrib non-free
 
 # Buster
-# deb http://ftp.de.debian.org/pub/debian buster main contrib non-free
-# deb http://ftp.de.debian.org/pub/debian buster-updates main contrib non-free
-# deb http://ftp.de.debian.org/pub/debian buster-proposed-updates main contrib non-free
+deb http://ftp.de.debian.org/pub/debian buster main contrib non-free
+deb http://ftp.de.debian.org/pub/debian buster-updates main contrib non-free
+deb http://ftp.de.debian.org/pub/debian buster-proposed-updates main contrib non-free
 
 # Buster Sources
 # deb-src http://ftp.de.debian.org/pub/debian buster main contrib non-free
