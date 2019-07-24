@@ -26,6 +26,7 @@ __apt_packages_stage1:
   - patch
   - aptitude
   - net-tools
+  - fzf
 
 # Disable unattended-upgrades, which is pulled in by various desktop environments like KDE
 __unattended_upgrades_enable_auto_updates: false
