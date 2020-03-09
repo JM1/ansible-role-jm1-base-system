@@ -1,4 +1,5 @@
 ---
+# NOTE: Sync' these package lists with JM1's install guides for Debian.
 __apt_packages_stage0:
   - dialog
   - libreadline-dev
