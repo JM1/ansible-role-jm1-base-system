@@ -19,6 +19,14 @@
     apt_packages_stage1: "{{ __apt_packages_stage1|list }}"
   when: apt_packages_stage1|default(None) == None
 
+- name: Cleanup role default variables
+  set_fact:
+    __unattended_upgrades_enable_auto_updates: !!null
+    __locales_locales_to_be_generated: !!null
+    __locales_default_environment_locale: !!null
+    __apt_packages_stage0: !!null
+    __apt_packages_stage1: !!null
+
 - apt:
     update_cache: yes
 
