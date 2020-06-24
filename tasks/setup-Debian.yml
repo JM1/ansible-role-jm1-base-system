@@ -1,24 +1,4 @@
 ---
-- set_fact:
-    unattended_upgrades_enable_auto_updates: "{{ __unattended_upgrades_enable_auto_updates }}"
-  when: unattended_upgrades_enable_auto_updates|default(None) == None
-
-- set_fact:
-    locales_locales_to_be_generated: "{{ __locales_locales_to_be_generated|list }}"
-  when: locales_locales_to_be_generated|default(None) == None
-
-- set_fact:
-    locales_default_environment_locale: "{{ __locales_default_environment_locale }}"
-  when: locales_default_environment_locale|default(None) == None
-
-- set_fact:
-    apt_packages_stage0: "{{ __apt_packages_stage0|list }}"
-  when: apt_packages_stage0|default(None) == None
-
-- set_fact:
-    apt_packages_stage1: "{{ __apt_packages_stage1|list }}"
-  when: apt_packages_stage1|default(None) == None
-
 - apt:
     update_cache: yes
 
@@ -26,7 +6,7 @@
     name: jm1.virtual_pkg
   vars:
      package_name: "jm1-base-system-stage0"
-     package_depends: "{{ apt_packages_stage0 }}"
+     package_depends: "{{ packages_stage0 }}"
 
 - debconf:
     name: unattended-upgrades
@@ -59,11 +39,4 @@
     name: jm1.virtual_pkg
   vars:
      package_name: "jm1-base-system-stage1"
-     package_depends: "{{ apt_packages_stage1 }}"
-
-- set_fact:
-    unattended_upgrades_enable_auto_updates: !!null
-    locales_locales_to_be_generated: !!null
-    locales_default_environment_locale: !!null
-    apt_packages_stage0: !!null
-    apt_packages_stage1: !!null
+     package_depends: "{{ packages_stage1 }}"

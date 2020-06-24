@@ -1,1 +1,55 @@
 ---
+# NOTE: Sync' these package lists with JM1's install guides for Debian.
+
+# Debian 10:
+# - debconf* packages are required for Ansible's debconf module
+
+packages_stage0: |-
+    {{
+    {
+        'Debian 10': [
+            'dialog',
+            'libreadline-dev',
+            'apt-utils',
+            'kmod',
+            'inetutils-ping',
+            'iproute2',
+            'debconf',
+            'debconf-utils'
+        ]
+    }[distribution_id|join(' ')] | default([])
+    }}
+
+packages_stage1: |-
+    {{
+    {
+        'Debian 10': [
+            'sudo',
+            'man-db',
+            'screen',
+            'vim',
+            'p7zip-full',
+            'curl',
+            'locales',
+            'locales-all',
+            'htop',
+            'bash-completion',
+            'console-setup',
+            'keyboard-configuration',
+            'lshw',
+            'patch',
+            'aptitude',
+            'net-tools',
+            'fzf'
+        ]
+    }[distribution_id|join(' ')] | default([])
+    }}
+
+# Disable unattended-upgrades, which is pulled in by various desktop environments like KDE
+unattended_upgrades_enable_auto_updates: false
+
+locales_locales_to_be_generated:
+  - en_US.UTF-8 UTF-8
+  - de_DE.UTF-8 UTF-8
+
+locales_default_environment_locale: de_DE.UTF-8
