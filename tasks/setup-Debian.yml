@@ -40,10 +40,9 @@
     state: absent
 
 - copy:
-    src: "{{ ansible_distribution }}-{{ ansible_distribution_version }}/"
+    src: "{{ distribution_id|join('-') }}/"
     dest: /
     mode: preserve
-
 
 - include_role:
     name: jm1.virtual_pkg
