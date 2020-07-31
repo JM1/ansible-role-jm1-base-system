@@ -1,21 +1,13 @@
 ---
 - apt:
     update_cache: yes
+    cache_valid_time: 86400 # 1 day
 
-- include_role:
-    name: jm1.virtual_pkg
-  vars:
-    package_name: "jm1-base-system-stage0"
-    package_depends:
-    # NOTE: Sync package list with JM1's install guides for Debian.
-    - dialog
-    - libreadline-dev
-    - apt-utils
-    - kmod
-    - inetutils-ping
-    - iproute2
-    - debconf       # required for
-    - debconf-utils # Ansible's debconf module
+- name: Satisfy Ansible requirements
+  meta: noop
+  # Package debconf is required for Ansible's debconf module. It has priority level 'required' and hence it is installed
+  # by default on Debian and its derivates. Package debconf-utils is never used although it is listed as a dependency of
+  # Ansible's debconf module
 
 - debconf:
     name: unattended-upgrades
@@ -35,35 +27,34 @@
     value: "{{ locales_default_environment_locale }}"
     vtype: select
 
-- file:
-    path: /etc/apt/sources.list
-    state: absent
+- when: distribution_id in [ ['Debian', '10'] ]
+  block:
+  - file:
+      path: /etc/apt/sources.list
+      state: absent
 
-- copy:
-    src: "{{ distribution_id|join('-') }}/"
-    dest: /
-    mode: preserve
+  - copy:
+      src: "{{ distribution_id|join('-') }}/"
+      dest: /
+      mode: preserve
 
 - include_role:
-    name: jm1.virtual_pkg
-  vars:
-    package_name: "jm1-base-system-stage1"
-    package_depends:
+    name: jm1.pkg.setup
+
+- jm1.pkg.meta_pkg:
+    name: "jm1-base-system"
+    version: 1
+    depends:
     # NOTE: Sync package list with JM1's install guides for Debian.
-    - sudo
-    - man-db
-    - screen
-    - vim
-    - p7zip-full
-    - curl
-    - locales
-    - locales-all
-    - htop
-    - bash-completion
-    - console-setup
-    - keyboard-configuration
-    - lshw
-    - patch
+    - acl
+    - apt-listchanges
+    - apt-transport-https
     - aptitude
-    - net-tools
-    - fzf
+    - at
+    - locales
+    - patch
+    - p7zip-full
+    - sudo
+    - xz-utils
+
+#- fzf # Debian 10 (Buster) and later
