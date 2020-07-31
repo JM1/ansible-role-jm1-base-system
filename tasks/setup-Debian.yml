@@ -38,12 +38,9 @@
       dest: /
       mode: preserve
 
-- include_role:
-    name: jm1.pkg.setup
-
 - jm1.pkg.meta_pkg:
     name: "jm1-base-system"
-    version: 1
+    version: "1"
     depends:
     # NOTE: Sync package list with JM1's install guides for Debian.
     - acl
