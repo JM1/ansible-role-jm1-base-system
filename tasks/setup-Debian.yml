@@ -27,7 +27,7 @@
     value: "{{ locales_default_environment_locale }}"
     vtype: select
 
-- when: distribution_id in [ ['Debian', '10'] ]
+- when: distribution_id in [ ['Debian', '10'], ['Debian', '11'] ]
   block:
   - file:
       path: /etc/apt/sources.list

@@ -1,0 +1,7 @@
+# Debian 11 (Bullseye)
+deb http://deb.debian.org/debian bullseye main contrib non-free
+deb http://deb.debian.org/debian bullseye-updates main contrib non-free
+deb http://deb.debian.org/debian bullseye-proposed-updates main contrib non-free
+#deb-src http://deb.debian.org/debian bullseye main contrib non-free
+#deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
+#deb-src http://deb.debian.org/debian bullseye-proposed-updates main contrib non-free
