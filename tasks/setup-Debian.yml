@@ -1,8 +1,4 @@
 ---
-- apt:
-    update_cache: yes
-    cache_valid_time: 86400 # 1 day
-
 - name: Satisfy Ansible requirements
   meta: noop
   # Package debconf is required for Ansible's debconf module. It has priority level 'required' and hence it is installed
@@ -42,9 +38,14 @@
   - name: Update apt cache before installing packages
     meta: flush_handlers
 
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400 # 1 day
+
 - jm1.pkg.meta_pkg:
     name: "jm1-base-system"
-    version: "1"
+    version: "2"
     depends:
     # NOTE: Sync package list with JM1's install guides for Debian.
     - acl
@@ -52,10 +53,9 @@
     - apt-transport-https
     - aptitude
     - at
+    - fzf
     - locales
     - patch
     - p7zip-full
     - sudo
     - xz-utils
-
-#- fzf # Debian 10 (Buster) and later
